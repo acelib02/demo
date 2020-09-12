@@ -1,0 +1,10 @@
+4, deer
+4, deer
+6, frog
+5, dog
+3, cat
+2, bird
+3, cat
+8, ship
+3, cat
+7, horse
