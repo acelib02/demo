@@ -2,7 +2,6 @@ import tensorflow.compat.v1 as tf
 import numpy as np
 from cifar10_train import *
 import matplotlib.pyplot as plt
-import cv2
 
 def compute_acc(predict, vali):
     acc = 0
@@ -43,8 +42,8 @@ def get_image():
     #vali_data = cv2.imread('vali_data/img_0.png')/255
     vali_data=[]
     for i in range(10):
-        img = cv2.imread('vali_data/img_'+str(i)+'.png')
-        vali_data.append((img/255).tolist())
+        img = plt.imread('vali_data/img_'+str(i)+'.png')
+        vali_data.append(img.tolist())
     vali_data=np.array(vali_data)
     vali_label=[]
     labels=[]

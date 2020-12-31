@@ -9,7 +9,6 @@ import sys
 import numpy as np
 import pickle
 import os
-import cv2
 
 data_dir = '/cifar10/'
 full_data_dir = '/cifar10/cifar-10-batches-py/data_batch_'
@@ -110,19 +109,6 @@ def read_in_all_images(address_list, shuffle=True, is_random_label = False):
     return data, label
 
 
-def horizontal_flip(image, axis):
-    '''
-    Flip an image at 50% possibility
-    :param image: a 3 dimensional numpy array representing an image
-    :param axis: 0 for vertical flip and 1 for horizontal flip
-    :return: 3D image after flip
-    '''
-    flip_prop = np.random.randint(low=0, high=2)
-    if flip_prop == 0:
-        image = cv2.flip(image, axis)
-
-    return image
-
 
 def whitening_image(image_np):
     '''
@@ -153,8 +139,6 @@ def random_crop_and_flip(batch_data, padding_size):
         y_offset = np.random.randint(low=0, high=2 * padding_size, size=1)[0]
         cropped_batch[i, ...] = batch_data[i, ...][x_offset:x_offset+IMG_HEIGHT,
                       y_offset:y_offset+IMG_WIDTH, :]
-
-        cropped_batch[i, ...] = horizontal_flip(image=cropped_batch[i, ...], axis=1)
 
     return cropped_batch
 
